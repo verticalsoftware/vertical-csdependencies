@@ -1,4 +1,4 @@
-# vertical-dependencies
+# vertical-csdependencies
 
 Finds all C# projects in a directory, and displays them in dependency order.
 
