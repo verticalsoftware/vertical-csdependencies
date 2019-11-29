@@ -10,11 +10,14 @@
     <PackageVersion>1.0.0</PackageVersion>
     <PackageTags>commandline;utilities</PackageTags>
     <PackageProjectUrl>https://github.com/verticalsoftware/vertical-csdependencies</PackageProjectUrl>
-    <PackageLicense>https://opensource.org/licenses/MIT</PackageLicense>
+    <License>https://opensource.org/licenses/MIT</License>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <Title>vertical-csdependencies</Title>
+    <PackageDescription>Finds all C# projects in a directory, and displays them in dependency order.</PackageDescription>
+    <Authors>Vertical Software Contributors</Authors>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>    
     <Copyright>Copyright (C) 2019 Vertical Software</Copyright>
   </PropertyGroup>
 
