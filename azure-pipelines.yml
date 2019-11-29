@@ -1,0 +1,59 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  projectPath: 'src/Vertical.Tools.CSharpDependencies.csproj'  
+
+steps:
+- task: DotNetCoreInstaller@0
+  displayName: 'Use .NET Core SDK 3.0.101'
+  inputs:
+    version: 3.0.101
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
+  inputs:
+    command: 'build'
+    arguments: '-c $(buildConfiguration)'
+    projects: '$(projectPath)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet pack'
+  inputs:
+    command: 'pack'
+    arguments: '-c $(buildConfiguration)'
+    packagesToPack: '$(projectPath)'
+    nobuild: true
+    versioningScheme: 'off'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Run unit tests & cover'
+  inputs:
+    command: test
+    arguments: '-c $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
+    projects: 'test/**/*.csproj'
+    nobuild: true
+
+- script:
+    dotnet tool install -g dotnet-reportgenerator-globaltool
+  displayName: Install code coverage tool
+
+- script:
+    reportgenerator -reports:$(Build.SourcesDirectory)/test/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/CodeCoverage -reporttypes:Cobertura
+  displayName: Create code coverage report
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Public code coverage'
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(Build.SourcesDirectory)/CodeCoverage/Cobertura.xml'
+    reportDirectory: '$(Build.SourcesDirectory)/CodeCoverage'
