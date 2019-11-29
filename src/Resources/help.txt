@@ -1,0 +1,46 @@
+csdeps - Finds dependency relationships in C# projects.
+
+USAGE
+
+    csdeps <path [,...]]> [OPTIONS]
+    
+DESCRIPTION
+
+    This program finds and loads all C# project files in the specified source directories, aggregates their package dependencies, correlates the dependencies with other assemblies found, and displays them in dependency order. The primary use case for this utility is for automation scripts that require projects to be built or processed in dependency order.
+    
+ARGUMENTS
+
+    <path [,...]>
+    
+        One or more source directories to look for files. Paths are automatically rooted to the current working directory unless rooted otherwise. If no paths are given, the utility assumes the current directory.
+        
+OPTIONS
+
+    --debug
+    
+        Displays verbose diagnostic information in addition to the normal program output.
+        
+    -h, --help
+    
+        Displays help content.
+        
+    -i, --include <pattern> [...]
+    
+        One or more glob patterns used to match files that are to be aggregated in the result. If no patterns are given, the pattern '**/*.csproj' is used. Only files that match one or more given patterns are included in the result.
+        
+    -o, --output <option>
+    
+        Specifies which nomenclature of the project should be used in the output. Choices are:
+            assemblyName    -   Output the assembly name as defined in the project file (may be null)
+            directory       -   Outputs the full name of the directory the project was found in, e.g. /src/vertical.logging
+            filename        -   Outputs the name of the project file without directory information, e.g. vertical.logging.csproj
+            path            -   Outputs the fully qualified path to the project file, e.g. /src/vertical.logging/vertical.logging.csproj
+            projectName     -   Output the project name without file extension, e.g. vertical.logging
+        
+    --tree
+    
+        Displays the projects as a tree, showing all dependencies and just not an ordered set.
+        
+    -x, --exclude <pattern> [...]
+    
+        One or more glob patterns used to match files that are to be excluded from aggregation. Exclude filters are only applied to files matched by the include pattern filter (-i, --include).

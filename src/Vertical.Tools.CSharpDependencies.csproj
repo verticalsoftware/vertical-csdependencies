@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootNamespace />
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>csdeps</ToolCommandName>
+    <PackageId>vertical-csdependencies</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <PackageTags>commandline;utilities</PackageTags>
+    <PackageProjectUrl>https://github.com/verticalsoftware/vertical-csdependencies</PackageProjectUrl>
+    <PackageLicense>https://opensource.org/licenses/MIT</PackageLicense>
+    <PackageIcon>logo.png</PackageIcon>
+    <RepositoryType>git</RepositoryType>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <Title>vertical-csdependencies</Title>
+    <Copyright>Copyright (C) 2019 Vertical Software</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dotnet.Glob" Version="3.0.5" />
+    <PackageReference Include="microsoft.extensions.dependencyinjection" Version="3.0.1" />
+    <PackageReference Include="serilog.sinks.console" Version="3.1.1" />
+    <PackageReference Include="system.io.abstractions" Version="7.0.7" />
+    <PackageReference Include="vertical-commandline" Version="1.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\help.txt" />
+    <Content Include="Resources\help.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>
