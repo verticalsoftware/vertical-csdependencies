@@ -1,5 +1,8 @@
 # vertical-csdependencies
 
+[![Build Status](https://dev.azure.com/vertical-software/vertical-csdependencies/_apis/build/status/verticalsoftware.vertical-csdependencies?branchName=master)](https://dev.azure.com/vertical-software/vertical-csdependencies/_build/latest?definitionId=3&branchName=master)
+![Azure DevOps coverage (branch)](https://img.shields.io/azure-devops/coverage/vertical-software/vertical-csdependencies/3/master)
+
 Finds all C# projects in a directory, and displays them in dependency order.
 
 ## Installation
