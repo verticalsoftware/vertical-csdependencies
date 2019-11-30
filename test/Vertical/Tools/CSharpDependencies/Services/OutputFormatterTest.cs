@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO.Abstractions;
 using Moq;
 using Serilog;
 using Shouldly;
@@ -28,8 +29,10 @@ namespace Vertical.Tools.CSharpDependencies.Services
         [Theory, MemberData(nameof(Theories))]
         public void FormatProject_Returns_Expected_Value(OutputFormat format, string expected)
         {
-            var subject = new OutputFormatter(new RunOptions { OutputFormat = format }
+            var subject = new OutputFormatter(new OptionsProvider(new RunOptions {OutputFormat = format}
+                    , new FileSystem().Directory)
                 , new Mock<ILogger>().Object);
+            
             subject.FormatProject(TestProject).ShouldBe(expected);
         }
 

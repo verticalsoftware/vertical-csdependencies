@@ -25,7 +25,7 @@ namespace Vertical.Tools.CSharpDependencies.Services
         /// </summary>
         /// <param name="options">Options.</param>
         /// <param name="logger">Logger</param>
-        public OutputFormatter(RunOptions options, ILogger logger)
+        public OutputFormatter(IOptions options, ILogger logger)
         {
             _logger = logger;
             _format = options.OutputFormat;

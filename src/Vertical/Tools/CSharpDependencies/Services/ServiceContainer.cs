@@ -36,6 +36,8 @@ namespace Vertical.Tools.CSharpDependencies.Services
             services.AddSingleton<IProjectBuilder, ProjectBuilder>();
             services.AddSingleton<IFileSystem, FileSystem>();
             services.AddSingleton<IOutputFormatter, OutputFormatter>();
+            services.AddSingleton<IOptions, OptionsProvider>();
+            services.AddSingleton(provider => provider.GetService<IFileSystem>().Directory);
             services.AddSingleton(CreateLogger(options));
 
             if (!options.Tree)

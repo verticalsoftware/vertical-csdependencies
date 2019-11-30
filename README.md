@@ -8,7 +8,7 @@ Finds all C# projects in a directory, and displays them in dependency order.
 ## Installation
 
 ```
-dotnet tool install vertical-dependencies
+dotnet tool install -g vertical-csdependencies
 ```
 
 ## Quick Start

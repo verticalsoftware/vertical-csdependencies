@@ -11,7 +11,6 @@ using System.Linq;
 using DotNet.Globbing;
 using Serilog;
 using Vertical.Tools.CSharpDependencies.Abstractions;
-using Vertical.Tools.CSharpDependencies.Configuration;
 
 namespace Vertical.Tools.CSharpDependencies.Services
 {
@@ -22,7 +21,7 @@ namespace Vertical.Tools.CSharpDependencies.Services
     {
         private readonly IFileSystem _fileSystem;
         private readonly ILogger _logger;
-        private readonly RunOptions _options;
+        private readonly IOptions _options;
         private readonly Glob[] _includeGlobs;
         private readonly Glob[] _excludeGlobs;
 
@@ -34,7 +33,7 @@ namespace Vertical.Tools.CSharpDependencies.Services
         /// <param name="options">Runtime options</param>
         public ProjectSearchProvider(IFileSystem fileSystem
             , ILogger logger
-            , RunOptions options)
+            , IOptions options)
         {
             _fileSystem = fileSystem;
             _logger = logger;
@@ -55,10 +54,6 @@ namespace Vertical.Tools.CSharpDependencies.Services
 
             return paths;
         }
-
-        private IEnumerable<string> SourceDirectories => _options.SourceDirectories.Any()
-            ? _options.SourceDirectories
-            : (IEnumerable<string>) new[] {_fileSystem.Directory.GetCurrentDirectory()};
 
         private IEnumerable<string> GetProjectsInPath(string path)
         {

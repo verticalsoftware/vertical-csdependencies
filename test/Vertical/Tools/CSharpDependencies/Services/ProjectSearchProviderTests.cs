@@ -15,12 +15,12 @@ namespace Vertical.Tools.CSharpDependencies.Services
         {
             var subject = new ProjectSearchProvider(CreateFileSystem()
                 , new Mock<ILogger>().Object
-                , new RunOptions
+                , new OptionsProvider(new RunOptions
                 {
                     SourceDirectories = {"/src"}, 
                     IncludeGlobs = {"/src/core/*.csproj"},
                     ExcludeGlobs = { }
-                });
+                }, new Mock<IDirectory>().Object));
             
             subject.GetProjectPaths().ShouldBe(new[]
             {
@@ -35,12 +35,12 @@ namespace Vertical.Tools.CSharpDependencies.Services
         {
             var subject = new ProjectSearchProvider(CreateFileSystem()
                 , new Mock<ILogger>().Object
-                , new RunOptions
+                , new OptionsProvider(new RunOptions
                 {
                     SourceDirectories = {"/src"}, 
                     IncludeGlobs = {"/src/**/*.csproj"},
                     ExcludeGlobs = { "/**/logging*" }
-                });
+                }, new FileSystem().Directory));
             
             subject.GetProjectPaths().ShouldBe(new[]
             {
